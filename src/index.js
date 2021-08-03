@@ -53,6 +53,14 @@ function collectStar(player, star) {
     stars.children.iterate((star) => {
       star.enableBody(true, star.x, 0, true, true);
     });
+    const x =
+      player.x < 400
+        ? Phaser.Math.Between(400, 800)
+        : Phaser.Math.Between(0, 400);
+    const bomb = bombs.create(x, 16, "bomb");
+    bomb.setBounce(1);
+    bomb.setCollideWorldBounds(true);
+    bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
   }
 }
 function hitBomb(player, bomb) {
