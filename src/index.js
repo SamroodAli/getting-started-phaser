@@ -40,11 +40,18 @@ let cursors;
 let stars;
 let score = 0;
 let scoreText;
+let gameOver = false;
 
 function collectStar(player, star) {
   star.disableBody(true, true);
   score += 10;
   scoreText.setText(`score: ${score}`);
+}
+function hitBomb(player, bomb) {
+  this.physics.pause();
+  player.setTint(0xff0000);
+  player.anims.play("turn");
+  gameOver = true;
 }
 
 function create() {
@@ -98,6 +105,9 @@ function create() {
   );
   this.physics.add.collider(stars, platforms);
   this.physics.add.overlap(player, stars, collectStar, null, this);
+  bombs = this.physics.add.group();
+  this.physics.add.collider(bombs, platforms);
+  this.physics.add.collider(player, bombs, hitBomb, null, this);
 }
 
 function update() {
