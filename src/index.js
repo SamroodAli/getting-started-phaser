@@ -39,6 +39,10 @@ let player;
 let cursors;
 let stars;
 
+function collectStar(player, star) {
+  star.disableBody(true, true);
+}
+
 function create() {
   this.add.image(400, 300, "sky");
 
@@ -85,6 +89,7 @@ function create() {
     star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8))
   );
   this.physics.add.collider(stars, platforms);
+  this.physics.add.overlap(player, stars, collectStar, null, this);
 }
 
 function update() {
