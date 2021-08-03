@@ -38,9 +38,13 @@ let platforms;
 let player;
 let cursors;
 let stars;
+let score = 0;
+let scoreText;
 
 function collectStar(player, star) {
   star.disableBody(true, true);
+  score += 10;
+  scoreText.setText(`score: ${score}`);
 }
 
 function create() {
@@ -53,6 +57,10 @@ function create() {
   platforms.create(600, 400, "ground");
   platforms.create(50, 250, "ground");
   platforms.create(750, 220, "ground");
+  scoreText = this.add.text(16, 16, "score: 0", {
+    fontSize: "32px",
+    fill: "#000",
+  });
 
   player = this.physics.add.sprite(100, 450, "dude");
 
