@@ -1,11 +1,14 @@
-import Phaser from "phaser";
+import Phaser from 'phaser';
+
 class Game extends Phaser.Scene {
   constructor() {
-    super("game");
+    super('game');
   }
+
   preload() {
-    this.load.image("background", "");
+    this.load.image('background', '');
   }
+
   create() {}
 }
 export default Game;

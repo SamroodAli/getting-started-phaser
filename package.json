@@ -48,6 +48,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "terser-webpack-plugin": "^5.1.4"
   }
 }
