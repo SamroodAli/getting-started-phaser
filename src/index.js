@@ -6,7 +6,7 @@ import star from "./assets/star.png";
 import bomb from "./assets/bomb.png";
 import dude from "./assets/dude.png";
 
-var config = {
+let config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
@@ -24,7 +24,7 @@ var config = {
   },
 };
 
-var game = new Phaser.Game(config);
+let game = new Phaser.Game(config);
 
 function preload() {
   this.load.image("sky", sky);
@@ -34,10 +34,10 @@ function preload() {
   this.load.spritesheet("dude", dude, { frameWidth: 32, frameHeight: 48 });
 }
 
-var platforms;
-var player;
-var cursors;
-var colliding;
+let platforms;
+let player;
+let cursors;
+let stars;
 
 function create() {
   this.add.image(400, 300, "sky");
@@ -76,6 +76,11 @@ function create() {
   });
   cursors = this.input.keyboard.createCursorKeys();
   this.physics.add.collider(platforms, player);
+  stars = this.physics.add.group({
+    key: "star",
+    repeat: 11,
+    setXY: { x: 12, y: 0, stepX: 70 },
+  });
 }
 
 function update() {
