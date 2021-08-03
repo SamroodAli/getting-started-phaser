@@ -41,11 +41,19 @@ let stars;
 let score = 0;
 let scoreText;
 let gameOver = false;
+let bombs;
 
 function collectStar(player, star) {
   star.disableBody(true, true);
+
   score += 10;
-  scoreText.setText(`score: ${score}`);
+  scoreText.setText("Score: " + score);
+
+  if (stars.countActive(true) === 0) {
+    stars.children.iterate((star) => {
+      star.enableBody(true, star.x, 0, true, true);
+    });
+  }
 }
 function hitBomb(player, bomb) {
   this.physics.pause();
@@ -111,6 +119,10 @@ function create() {
 }
 
 function update() {
+  if (gameOver) {
+    return;
+  }
+
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
     player.anims.play("left", true);
