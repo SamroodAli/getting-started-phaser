@@ -27,6 +27,8 @@ function preload() {
   this.load.spritesheet("dude", dude, { frameWidth: 32, frameHeight: 48 });
 }
 
-function create() {}
+function create() {
+  this.add.image(400, 300, "sky");
+}
 
 function update() {}
